@@ -25,12 +25,11 @@ function Register() {
       try {
         const res = await axios.post(`${config.api}/api/users/signup`, values);
         alert(res.data.message);
-        console.log(res.data.user);
+        console.log(res.data);
 
         localStorage.setItem("email", values.email);
-        localStorage.setItem("react_app_token", res.data.token);
-        localStorage.setItem("userid", res.data.user._id);
-        navigate(`/dashboard/${localStorage.getItem("userid")}`);
+        localStorage.setItem("userid", res.data.data.userId);
+        navigate(`/verifyotp/${localStorage.getItem("userid")}`);
 
         // localStorage.setItem("react_app_token",res.data.token)
       } catch (error) {
